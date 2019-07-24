@@ -32,7 +32,7 @@ public class AccountService {
      */
     public Account checkLogin(String username, String password) {
         String pwd = MD5Util.MD5(password);
-        List<Account> list = accountMapper.getAccountByNameAndPwd(username, pwd);
+        List<Account> list = accountMapper.getAccountByNameAndPwd(username, password);
         if(list.size() == 1){
             return list.get(0);
         }
