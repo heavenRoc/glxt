@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.layne666.gym.mapper.KsMapper">
+    <resultMap id="baseMap" type="site.layne666.gym.pojo.Ks">
+        <id property="bh" column="c_bh"/>
+        <result property="sysks" column="c_sysks"/>
+        <result property="ksjg" column="c_ksjg"/>
+        <result property="cjsj" column="dt_cjsj"/>
+        <association property="user" column="c_user_bh" select="site.layne666.gym.mapper.UserMapper.getUserByBH"/>
+        <association property="course" column="c_course_bh" select="site.layne666.gym.mapper.CourseMapper.getCourseByBh"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,date_format(dt_cjsj, '%Y年%m月%d日') as dt_cjsj
+    </sql>
+
+    <select id="getKss" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user_ks
+    </select>
+
+    <select id="getKssByBh" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user_ks where c_bh = #{bh}
+    </select>
+
+    <select id="getKssByCourseBh" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user_ks where c_course_bh = #{courseBh}
+    </select>
+
+    <select id="getKssByUserBh" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user_ks where c_user_bh = #{userBh}
+    </select>
+
+    <insert id="insertKs">
+        insert into t_user_ks(c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,dt_cjsj)
+        values(#{bh},#{user.bh},#{course.bh},#{sysks},#{ksjg},now())
+    </insert>
+
+    <update id="updateKs">
+        update t_user_ks
+        <set>
+          <if test="course.bh!=null and course.bh!=''">
+              c_course_bh = #{course.bh},
+          </if>
+          <if test="sysks!=null and sysks!=''">
+              c_sysks = #{sysks},
+          </if>
+          <if test="ksjg!=null and ksjg!=''">
+              c_ksjg = #{ksjg},
+          </if>
+        </set>
+        where c_bh = #{bh}
+    </update>
+
+    <delete id="deleteKsByBh">
+        delete from t_user_ks where c_bh = #{bh}
+    </delete>
+
+</mapper>

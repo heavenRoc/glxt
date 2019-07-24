@@ -1,0 +1,149 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common :: head(title='360健身工作室')"></div>
+<body data-type="index">
+    <div id="app">
+        <!-- 头部导航栏 -->
+        <div th:replace="common :: header"></div>
+
+        <div class="tpl-page-container tpl-page-header-fixed">
+            <!-- 左侧页签 -->
+            <div th:replace="common :: side(activeUrl='/')"></div>
+
+            <!-- 正文内容 -->
+            <div class="tpl-content-wrapper">
+                <ol class="am-breadcrumb">
+                    <li><a href="/" class="am-icon-home">首页</a></li>
+                    <li class="am-active">内容</li>
+                </ol>
+                <div class="tpl-content-scope">
+                    <div class="note note-info">
+                        <h3>欢迎你，<span th:text="${session.account.getCoach().getName()}"></span></h3>
+                        <p>欢迎使用360健身工作室的后台管理系统，通过此管理系统可以对会员、教练等进行管理，由<a href="https://github.com/Layne666" target="_blank">Layne666</a>在<a
+                                href="https://github.com/Layne666/gym" target="_blank">Github</a>进行代码维护。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                        <div class="dashboard-stat blue">
+                            <div class="visual">
+                                <i class="am-icon-users"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number" v-text="userNum"></div>
+                                <div class="desc">会员数</div>
+                            </div>
+                            <a class="more" href="/user"> 查看更多
+                                <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                        <div class="dashboard-stat red">
+                            <div class="visual">
+                                <i class="am-icon-user"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number" v-text="coachNum"></div>
+                                <div class="desc"> 教练数</div>
+                            </div>
+                            <a class="more" href="/coach"> 查看更多
+                                <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                        <div class="dashboard-stat green">
+                            <div class="visual">
+                                <i class="am-icon-table"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number" v-text="courseNum"></div>
+                                <div class="desc"> 课程分类</div>
+                            </div>
+                            <a class="more" href="/course"> 查看更多
+                                <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                        <div class="dashboard-stat purple">
+                            <div class="visual">
+                                <i class="am-icon-money"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number" v-text="totalPrice"></div>
+                                <div class="desc"> 总收入额(元)</div>
+                            </div>
+                            <a class="more" href="/record"> 查看更多
+                                <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="am-u-md-12 am-u-sm-12 row-mb">
+                        <div class="tpl-portlet">
+                            <div class="tpl-portlet-title">
+                                <div class="tpl-caption font-blue">
+                                    <i class="am-icon-wpforms"></i>
+                                    <span> 本月教练上课情况 </span>
+                                </div>
+                                <!--<div class="actions">-->
+                                    <!--<ul class="actions-btn">-->
+                                        <!--<li class="red-on">今天</li>-->
+                                        <!--<li class="green">昨天</li>-->
+                                        <!--<li class="dark">本月</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="tpl-scrollable">
+                                <div class="number-stats">
+                                    <div class="stat-number am-fl am-u-md-6">
+                                        <div class="title am-text-right"> 课时数</div>
+                                        <div class="number am-text-right am-text-warning" v-text="month.skks"> 0</div>
+                                    </div>
+                                    <div class="stat-number am-fr am-u-md-6">
+                                        <div class="title"> 收入额</div>
+                                        <div class="number am-text-success" v-text="month.kszj"> 0</div>
+                                    </div>
+                                </div>
+
+                                <table class="am-table tpl-table">
+                                    <thead>
+                                        <tr class="tpl-table-uppercase">
+                                            <th>教练</th>
+                                            <th>课时数</th>
+                                            <th>收入额</th>
+                                            <th>收入占比</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="record in month.records">
+                                            <td>
+                                                <img :src="record.img" alt="" class="user-pic" style="width: 30px;height: 30px;">
+                                                <a class="user-name" href="/coach" v-text="record.name"></a>
+                                            </td>
+                                            <td v-text="record.skks"></td>
+                                            <td>￥<span v-text="record.kszj">0</span></td>
+                                            <td class="font-green bold" v-text="record.srzb">0%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/assets/js/echarts.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/iscroll.js"></script>
+<script src="/assets/js/app.js"></script>
+</html>

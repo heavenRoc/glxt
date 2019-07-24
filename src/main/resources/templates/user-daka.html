@@ -1,0 +1,86 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common :: head(title='用户管理-360健身工作室')"></div>
+<body data-type="generalComponents">
+<div id="app">
+    <!-- 头部导航栏 -->
+    <div th:replace="common :: header"></div>
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+        <!-- 左侧页签 -->
+        <div th:replace="common :: side(activeUrl='/user')"></div>
+
+        <!-- 正文内容 -->
+        <div class="tpl-content-wrapper">
+            <ol class="am-breadcrumb">
+                <li><a href="/" class="am-icon-home">首页</a></li>
+                <li><a href="/user">会员管理</a></li>
+                <li class="am-active">会员打卡</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-link"></span> 会员打卡
+                    </div>
+                </div>
+                <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-9">
+                            <form class="am-form am-form-horizontal">
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">姓名 / Name</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" disabled :value="param.user.name">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">课程分类 / Category</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" disabled :value="param.course.name">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">剩余课时 / Unit</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" disabled :value="param.sysks">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">课时价格 / Price</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" disabled :value="newKsjg">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">打卡课时 / Hour</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="number" v-model="dkks">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">打卡课时价格 / Price</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" :value="dkksjg" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button @click="submitDaka" type="button" class="am-btn am-btn-primary">提交打卡记录</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/user-daka.js"></script>
+<script src="/assets/js/amazeui.min.js"></script>
+<script src="/assets/js/app.js"></script>
+</html>

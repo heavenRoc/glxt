@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.layne666.gym.mapper.UserMapper">
+    <resultMap id="baseMap" type="site.layne666.gym.pojo.User">
+        <id property="bh" column="c_bh"/>
+        <result property="name" column="c_name"/>
+        <result property="sex" column="c_sex"/>
+        <result property="age" column="c_age"/>
+        <result property="tel" column="c_tel"/>
+    </resultMap>
+
+    <sql id="baseColumn">
+        c_bh,c_name,c_sex,c_age,c_tel
+    </sql>
+
+    <select id="getUsers" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user
+        <where>
+            <if test="name!=null and name!=''">
+                c_name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserByBH" resultMap="baseMap">
+        select
+        <include refid="baseColumn"/>
+        from t_user where c_bh = #{bh}
+    </select>
+
+    <insert id="insertUser">
+        insert into t_user(c_bh,c_name,c_sex,c_age,c_tel)
+        values(#{bh},#{name},#{sex},#{age},#{tel})
+    </insert>
+
+    <update id="updateUser">
+        update t_user
+        <set>
+            <if test="name!=null and name!=''">
+                c_name = #{name},
+            </if>
+            <if test="sex!=null and sex!=''">
+                c_sex = #{sex},
+            </if>
+            <if test="age!=null and age!=''">
+                c_age = #{age},
+            </if>
+            <if test="tel!=null and tel!=''">
+                c_tel = #{tel},
+            </if>
+        </set>
+        where c_bh = #{bh}
+    </update>
+
+    <delete id="deleteUserByBh">
+        delete from t_user where c_bh = #{bh}
+    </delete>
+
+    <select id="countUsers" resultType="int">
+        select count(1) from t_user
+    </select>
+
+</mapper>
