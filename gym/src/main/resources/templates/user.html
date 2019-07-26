@@ -56,6 +56,7 @@
                                             <th class="table-title">剩余上课时</th>
                                             <th class="table-title">课时价格</th>
                                             <th class="table-title">课程分类</th>
+                                            <th class="table-title am-hide-sm-only">教练</th>
                                             <th class="table-title am-hide-sm-only">加入时间</th>
                                             <th class="table-title">操作</th>
                                         </tr>
@@ -70,6 +71,7 @@
                                             <td v-text="ks.sysks"></td>
                                             <td>￥<span v-text="ks.ksjg"></span></td>
                                             <td><a v-text="ks.course.name" href="/course"></a></td>
+                                            <td><a v-text="ks.user.coach.name" href="/coach"></a></td>
                                             <td v-text="ks.cjsj"></td>
                                             <td>
                                                 <div class="am-btn-toolbar">

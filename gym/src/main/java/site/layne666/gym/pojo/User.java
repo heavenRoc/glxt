@@ -25,4 +25,7 @@ public class User {
 
     /** 电话号码 **/
     private String tel;
+
+    /** 教练编号 **/
+    private Coach coach;
 }

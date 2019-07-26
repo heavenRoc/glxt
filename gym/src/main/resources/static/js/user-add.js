@@ -11,10 +11,12 @@ const vm = new Vue({
                 age:'',
                 tel:'',
                 courseBh:'',
+                coacherbh:'',
                 sysks:'',
                 ksjg:''
             },
-            courses:[]
+            courses:[],
+            coaches:[]
         }
     },
     mounted:function(){
@@ -42,6 +44,9 @@ const vm = new Vue({
             if(_this.param.courseBh==''){
                 alert("课程分类不能为空！");
                 return;
+            }
+            if(_this.param.coachbh==''){
+                alert("教练不能为空")
             }
             if(_this.param.sysks==''){
                 alert("剩余课时数不能为空！");

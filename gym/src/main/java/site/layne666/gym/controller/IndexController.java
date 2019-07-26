@@ -1,5 +1,6 @@
 package site.layne666.gym.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * @date 2019/04/27
  */
 @Controller
+@Slf4j
 public class IndexController {
 
     @Autowired

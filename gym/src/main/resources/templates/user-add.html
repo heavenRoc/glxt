@@ -66,6 +66,15 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">教练 / Coach</label>
+                                    <div class="am-u-sm-9">
+                                        <select name="coach" v-model="param.coachbh">
+                                            <option value="">---</option>
+                                            <option value="coach.bh" v-for="coach in coaches">{{coach.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">剩余课时 / Unit</label>
                                     <div class="am-u-sm-9">
                                         <input type="text" placeholder="输入剩余课时 / Unit" v-model="param.sysks">

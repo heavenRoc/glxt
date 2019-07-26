@@ -18,8 +18,10 @@ spring:
     multipart:
       max-file-size: -1
       max-request-size: -1
+  profiles:
+    active: "@spring.profiles.active@"
+    include: log
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: site.layne666.gym.pojo
-

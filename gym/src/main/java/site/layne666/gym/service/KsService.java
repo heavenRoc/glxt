@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.layne666.gym.mapper.KsMapper;
 import site.layne666.gym.mapper.UserMapper;
+import site.layne666.gym.pojo.Coach;
 import site.layne666.gym.pojo.Course;
 import site.layne666.gym.pojo.Ks;
 import site.layne666.gym.pojo.User;

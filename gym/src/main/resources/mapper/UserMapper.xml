@@ -9,10 +9,11 @@
         <result property="sex" column="c_sex"/>
         <result property="age" column="c_age"/>
         <result property="tel" column="c_tel"/>
+        <association property="coach" column="c_coach_bh" select="site.layne666.gym.mapper.CoachMapper.getCoachByBH"/>
     </resultMap>
 
     <sql id="baseColumn">
-        c_bh,c_name,c_sex,c_age,c_tel
+        c_bh,c_name,c_sex,c_age,c_tel,c_coach_bh
     </sql>
 
     <select id="getUsers" resultMap="baseMap">
@@ -33,8 +34,8 @@
     </select>
 
     <insert id="insertUser">
-        insert into t_user(c_bh,c_name,c_sex,c_age,c_tel)
-        values(#{bh},#{name},#{sex},#{age},#{tel})
+        insert into t_user(c_bh,c_name,c_sex,c_age,c_tel,c_coach_bh)
+        values(#{bh},#{name},#{sex},#{age},#{tel},#{coachbh})
     </insert>
 
     <update id="updateUser">
