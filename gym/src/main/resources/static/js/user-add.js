@@ -16,11 +16,12 @@ const vm = new Vue({
                 ksjg:''
             },
             courses:[],
-            coaches:[]
+            coaches:[],
         }
     },
     mounted:function(){
         this.loadData();
+        this.loadsData();
     },
     methods:{
         submitAdd:function(){
@@ -45,7 +46,7 @@ const vm = new Vue({
                 alert("课程分类不能为空！");
                 return;
             }
-            if(_this.param.coachbh==''){
+            if(_this.param.coacherbh==''){
                 alert("教练不能为空")
             }
             if(_this.param.sysks==''){
@@ -85,6 +86,18 @@ const vm = new Vue({
                     _this.courses = result.data;
                 }
             });
+        },
+        loadsData:function () {
+            let _this = this;
+            $.ajax({
+                type: "POST",
+                url: "/coach/list",
+                dataType: "json",
+                success: function (result) {
+                    _this.coaches = result.data;
+                }
+            });
+
         },
     }
 })

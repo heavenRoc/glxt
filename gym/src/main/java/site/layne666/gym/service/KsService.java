@@ -51,8 +51,11 @@ public class KsService {
         ks.setBh(UUIDUtil.getUUid());
         Course course = new Course();
         course.setBh(map.get("courseBh"));
+        Coach coach=new Coach();
+        coach.setBh(map.get("coacherbh"));
         ks.setCourse(course);
         ks.setUser(user);
+        ks.setCoach(coach);
         ks.setSysks(map.get("sysks"));
         ks.setKsjg(map.get("ksjg"));
         ksMapper.insertKs(ks);

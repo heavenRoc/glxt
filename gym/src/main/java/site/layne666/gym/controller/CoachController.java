@@ -179,4 +179,15 @@ public class CoachController {
             return new ApiResult(false,"查询教练数量失败");
         }
     }
+    @RequestMapping("/list")
+    @ResponseBody
+    public ApiResult list(){
+        try{
+            List<Coach> coach = coachMapper.getCoaches(null);
+            return new ApiResult(coach);
+        }catch (Exception e){
+            log.error("查询教练失败",e);
+            return new ApiResult(false,"查询教练失败");
+        }
+    }
 }

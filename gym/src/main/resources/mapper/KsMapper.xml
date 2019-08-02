@@ -10,10 +10,11 @@
         <result property="cjsj" column="dt_cjsj"/>
         <association property="user" column="c_user_bh" select="site.layne666.gym.mapper.UserMapper.getUserByBH"/>
         <association property="course" column="c_course_bh" select="site.layne666.gym.mapper.CourseMapper.getCourseByBh"/>
+        <association property="coach" column="c_coach_bh" select="site.layne666.gym.mapper.CoachMapper.getCoachByBH"/>
     </resultMap>
 
     <sql id="baseColumn">
-        c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,date_format(dt_cjsj, '%Y年%m月%d日') as dt_cjsj
+        c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,date_format(dt_cjsj, '%Y年%m月%d日') as dt_cjsj,c_coach_bh
     </sql>
 
     <select id="getKss" resultMap="baseMap">
@@ -41,8 +42,8 @@
     </select>
 
     <insert id="insertKs">
-        insert into t_user_ks(c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,dt_cjsj)
-        values(#{bh},#{user.bh},#{course.bh},#{sysks},#{ksjg},now())
+        insert into t_user_ks(c_bh,c_user_bh,c_course_bh,c_sysks,c_ksjg,dt_cjsj,c_coach_bh)
+        values(#{bh},#{user.bh},#{course.bh},#{sysks},#{ksjg},now(),#{coach.bh})
     </insert>
 
     <update id="updateKs">

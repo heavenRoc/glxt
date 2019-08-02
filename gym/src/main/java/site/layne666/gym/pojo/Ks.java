@@ -28,4 +28,7 @@ public class Ks {
     /** 课时分类 **/
     private Course course;
 
+    /** 教练编号 **/
+    private Coach coach;
+
 }

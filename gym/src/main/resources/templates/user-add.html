@@ -68,9 +68,9 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">教练 / Coach</label>
                                     <div class="am-u-sm-9">
-                                        <select name="coach" v-model="param.coachbh">
+                                        <select name="coach" v-model="param.coacherbh">
                                             <option value="">---</option>
-                                            <option value="coach.bh" v-for="coach in coaches">{{coach.name}}</option>
+                                            <option :value="coach.bh" v-for="coach in coaches">{{coach.name}}</option>
                                         </select>
                                     </div>
                                 </div>
